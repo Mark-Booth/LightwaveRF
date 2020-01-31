@@ -31,3 +31,4 @@ services:
         volumes:
             - ./grafana/provisioning/:/etc/grafana/provisioning/:ro
             - grafana-volume:/var/lib/grafana
+            - grafana-volume:/etc/grafana/provisioning/data
