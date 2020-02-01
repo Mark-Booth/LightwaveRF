@@ -17,7 +17,7 @@ import prometheus_client
 logging.basicConfig(
     stream=sys.stdout,
     format="%(asctime)-15s %(levelname)-7s %(message)s ",
-    level=logging.INFO)
+    level=logging.NOTSET)
 sLog = logging.getLogger('LightwaveLink')
 
 COMMAND = "!R{RoomNo}D{DeviceNo}F{FunctionType}P{Parameter}|{Line1}|{Line2}"
@@ -600,6 +600,9 @@ def load_config():
 
     return dConfig
 
+def dump_TRV_dict(d):
+    return ', '.join(['%r:%r' % (key, value.rName) for (key, value) in d.items()])
+
 def call_for_heat(sLink, dStatus):
     lCalling = are_calling_for_heat(dStatus)
 
@@ -610,12 +613,13 @@ def call_for_heat(sLink, dStatus):
         sLog.error(
             "No device named 'Boiler switch' present in configuration "
             "file, unable to call for (lack of) heat!")
+        sLog.debug("dStatus = %r", dump_TRV_dict(dStatus))
         return
 
     # pylint: disable=undefined-loop-variable
 
     rCommandTemplate = "!R{}F*tP{}"
-    OFF = 50.0
+    OFF = 5.0
     ON = 60.0
     if lCalling:
         rCommand = rCommandTemplate.format(sDevice.slot, ON)
@@ -634,8 +638,10 @@ def are_calling_for_heat(dStatus):
     lCalling = []
     for sDevice in dStatus.itervalues():
         if sDevice.prod != "valve":
+            sLog.debug("Ignoring prod='%s' on %s",sDevice.prod, sDevice.rName)
             continue
         if sDevice.output:
+            sLog.debug("Call for heat with output %r from %r (%r) ", sDevice.output, sDevice.rName, sDevice.serial)
             lCalling.append(sDevice)
 
     return lCalling
@@ -697,10 +703,13 @@ def main():
                 "read", "statusPush", "statusOn", "statusOff"):
             rSerial = dResponse["serial"]
             if rSerial not in dStatus:
+                sLog.warn(
+                    "Device with serial %r (%r) not present in dStatus %r",
+                    rSerial, str(rSerial), dump_TRV_dict(dStatus))
                 if rSerial not in dConfig:
                     sLog.warn(
-                        "Device with serial %s not present in config file",
-                        rSerial)
+                        "Device with serial %r not present in config file %r",
+                        rSerial, dConfig)
                 rName = dConfig.get(rSerial, rSerial)
                 dStatus[rSerial] = TRVStatus(rName)
             dStatus[rSerial].update(dResponse)
