@@ -1,0 +1,46 @@
+import sys
+import logging
+import prometheus_client
+
+logging.basicConfig(
+    stream=sys.stdout,
+    format="%(asctime)-15s %(levelname)-7s %(message)s ",
+    level=logging.DEBUG)
+sLog = logging.getLogger('LightwaveLink')
+
+COMMAND = "!R{RoomNo}D{DeviceNo}F{FunctionType}P{Parameter}|{Line1}|{Line2}"
+
+from lightwave_link import LightwaveLink
+from lightwave_link import load_config
+
+dConfig = load_config()
+
+prometheus_client.start_http_server(9191)
+
+sLink = LightwaveLink()
+#sLink.rAddress='192.168.37.19'
+sLink.monitor()
+
+sLink.test_connectivity()
+
+sLog.debug("Unexpected response: %s", dResponse)
+
+------------------------------------
+sLink.send_command("@H")
+dResponse = sLink.get_response()
+
+sLink.send_command("@H") ; print sLink.get_response() ; print sLink.get_response() ; print sLink.get_response() ; print sLink.get_response() ; print sLink.get_response()
+
+
+
+sLink.scan_devices()
+
+====================================
+
+
+2020-01-27 01:34:40,018 DEBUG   send_command(100,@H, ('255.255.255.255', 9760))
+2020-01-27 01:34:52,232 DEBUG   Unexpected response: {u'trans': 3381, u'pkt': u'868R', u'todUse': 969, u'mac': u'20:59:DA', u'cUse': 630, u'time': 1580088890, u'serial': u'2473FE', u'prod': u'pwrMtr', u'type': u'energy', u'fn': u'meterData'}
+
+2020-01-27 01:34:52,236 DEBUG   send_command(103,!F*p, ('255.255.255.255', 9760))
+
+2020-01-27 01:34:52,869 DEBUG   Unexpected response: {u'uptime': 36067, u'prod': u'lwl', u'run': 0, u'pkt': u'system', u'fw': u'N2.94D', u'macs': 12, u'ip': u'192.168.37.19', u'long': -1.24, u'devs': 9, u'evns': 0, u'mac': u'20:59:DA', u'tmrs': 0, u'time': 1580088891, u'lat': 51.61, u'timeZone': 0, u'trans': 3382, u'type': u'hub', u'fn': u'hubCall'}
