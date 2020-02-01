@@ -1972,7 +1972,7 @@
           "refId": "A"
         },
         {
-          "expr": "count(lwl_output_ratio{product=\"electr\"} > 0)",
+          "expr": "count(lwl_output_ratio{product=~\"electr|tmr1ch\"} > 0)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Switches",
@@ -2135,7 +2135,7 @@
           "refId": "A"
         },
         {
-          "expr": "count(lwl_output_ratio{product=\"electr\"} > 0)",
+          "expr": "count(lwl_output_ratio{product=~\"electr|tmr1ch\"} > 0)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Switches",
@@ -2271,7 +2271,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "lwl_battery_volts{product=\"valve\"}",
+          "expr": "lwl_battery_volts{product=~\"valve|tmr1ch\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -2402,13 +2402,22 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "changes(lwl_time{product=\"valve\"}[6h])",
+          "expr": "changes(lwl_time{product=\"tmr1ch\"}[6h])",
           "format": "time_series",
           "instant": true,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{name}}",
           "refId": "A"
+        },
+        {
+          "expr": "changes(lwl_time{product=\"valve\"}[6h])",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{name}}",
+          "refId": "B"
         }
       ],
       "thresholds": [
@@ -2502,14 +2511,14 @@
           "value": "$__all"
         },
         "datasource": "Prometheus",
-        "definition": "query_result({job=\"lwl\",product=\"electr\"})",
+        "definition": "query_result({job=\"lwl\",product=~\"electr|tmr1ch\"})",
         "hide": 0,
         "includeAll": true,
         "label": "",
         "multi": true,
         "name": "Switch",
         "options": [],
-        "query": "query_result({job=\"lwl\",product=\"electr\"})",
+        "query": "query_result({job=\"lwl\",product=~\"electr|tmr1ch\"})",
         "refresh": 1,
         "regex": "/.*,name=\"(.*?)\".*/",
         "skipUrlSync": false,
