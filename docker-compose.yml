@@ -19,7 +19,7 @@ services:
         volumes:
             - prometheus-volume:/app/data/
     grafana:
-        image: grafana/grafana:5.4.3
+        image: grafana/grafana:latest
         depends_on:
             - prometheus
         # Listens for HTTP (TCP) traffic on 3000 (Grafana UI)
