@@ -1934,18 +1934,18 @@
       "fill": 1,
       "gridPos": {
         "h": 5,
-        "w": 20,
+        "w": 12,
         "x": 0,
         "y": 20
       },
       "id": 142,
       "legend": {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg": false,
-        "current": true,
+        "current": false,
         "max": false,
         "min": false,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": true
@@ -2097,18 +2097,18 @@
       "fill": 1,
       "gridPos": {
         "h": 5,
-        "w": 20,
-        "x": 0,
+        "w": 12,
+        "x": 12,
         "y": 25
       },
       "id": 167,
       "legend": {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg": false,
-        "current": true,
+        "current": false,
         "max": false,
         "min": false,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": true
@@ -2241,18 +2241,18 @@
       "fill": 0,
       "gridPos": {
         "h": 6,
-        "w": 20,
+        "w": 12,
         "x": 0,
         "y": 30
       },
       "id": 193,
       "legend": {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg": false,
         "current": true,
         "max": false,
         "min": false,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": true
@@ -2372,8 +2372,8 @@
       "fill": 0,
       "gridPos": {
         "h": 6,
-        "w": 20,
-        "x": 0,
+        "w": 12,
+        "x": 12,
         "y": 36
       },
       "id": 218,
@@ -2532,7 +2532,7 @@
     ]
   },
   "time": {
-    "from": "now-7d",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
