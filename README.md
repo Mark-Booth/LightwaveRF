@@ -6,7 +6,7 @@ It was written because Lightwave's own implementation was just *awful*, it rarel
 
 ## Real-world Requirements
 
-1. Raspberry Pi 3 (model B)
+1. Raspberry Pi 3 (model B) or amd64 based docker host
 2. [Lightwave Link](https://lightwaverf.com/collections/control-connect-series/products/jsjslw930-lightwaverf-wifi-link-wi-fi-link-lightwave-link) to bridge RF and your (WiFi) network. Not the plus version, I have both but have not played with the plus after a very bad first impression
 3. One or more [LightwaveRF Thermostatic Radiator Valves (TRVs)](https://lightwaverf.com/products/wireless-radiator-valves)
 4. A [LightwaveRF Electric Switch](https://lightwaverf.com/products/electric-switch) which controls your boiler
@@ -33,6 +33,12 @@ docker-compose up
 ```
 
 The first time this is run it will have to build the project's docker images, which can take minutes.
+
+If using an amd64 docker host rahther than a Raspberry Pi, first run
+
+```
+ln -s docker-compose.override.yml.amd64 docker-compose.override.yml
+```
 
 ## First run
 
