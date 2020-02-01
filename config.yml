@@ -23,11 +23,12 @@
 # '123456':Device with numeric serial string
 # '012345':Device with numeric serial string with leading zero
 #
-9993FE: Boiler switch
-5FC502: Lounge
-DBC302: Playroom
-DCC302: Hallway
-47C702: Front door
-CB3FFE: Small bedroom
-67C702: Back bedroom
-24C702: Master bedroom
+807102: Boiler switch
+2059DA: Energy monitor
+B686CA: Living room
+2366CA: Hall
+7036CA: Toilet
+D466CA: Conservatory
+188CCA: Bedroom
+4E86CA: Christi
+BF6BCA: Mark
