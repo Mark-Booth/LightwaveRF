@@ -6,20 +6,20 @@ services:
     lightwaverf:
         build:
             context: .
-            dockerfile: Dockerfile.arm32v7
+            dockerfile: Dockerfile.amd64
         # Listens for UDP broadcast traffic on port 9761 (LightwaveRF responses)
         # Listens for HTTP (TCP) traffic on 9191 (prometheus exporter)
         network_mode: host
     prometheus:
         build:
             context: prometheus/
-            dockerfile: Dockerfile.arm32v7
+            dockerfile: Dockerfile.amd64
         # Listens for HTTP (TCP) traffic on 9090 (prometheus UI)
         network_mode: host
         volumes:
             - prometheus-volume:/app/data/
     grafana:
-        image: grafana/grafana-arm32v7-linux:5.4.3
+        image: grafana/grafana:5.4.3
         depends_on:
             - prometheus
         # Listens for HTTP (TCP) traffic on 3000 (Grafana UI)
