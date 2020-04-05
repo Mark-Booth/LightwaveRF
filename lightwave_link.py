@@ -607,12 +607,13 @@ def call_for_heat(sLink, dStatus):
     lCalling = are_calling_for_heat(dStatus)
 
     for sDevice in dStatus.itervalues():
-        if sDevice.rName == "Boiler switch":
+        if sDevice.rName in ("Boiler switch", "Home Thermostat"):
             break
     else:
         sLog.error(
-            "No device named 'Boiler switch' present in configuration "
-            "file, unable to call for (lack of) heat!")
+            "No devices named 'Boiler switch' or 'Home Thermometer' found, "
+            "unable to call for (lack of) heat! Check one ot the other is "
+            "present in the configuration file.")
         sLog.debug("dStatus = %r", dump_TRV_dict(dStatus))
         return
 

@@ -2,7 +2,7 @@
 # Purpose:
 #
 #   1. Designate which device controls the boiler - must have name "Boiler
-#      switch"
+#      switch" or "Home Thermostat"
 #   2. Give names to radiators which appear in logs and, importantly,
 #      prometheus time-series data 
 #
@@ -23,7 +23,7 @@
 # '123456':Device with numeric serial string
 # '012345':Device with numeric serial string with leading zero
 #
-807102: Boiler switch
+807102: Home Thermostat
 2059DA: Energy monitor
 B686CA: Living room
 2366CA: Hall
