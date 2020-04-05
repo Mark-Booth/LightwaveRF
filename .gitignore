@@ -1,4 +1,6 @@
 .vagrant/
+grafana-volume/
+prometheus-volume/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,7 +1,4 @@
 version: "2"
-volumes:
-    prometheus-volume:
-    grafana-volume:
 services:
     lightwaverf:
         build:
@@ -17,7 +14,7 @@ services:
         # Listens for HTTP (TCP) traffic on 9090 (prometheus UI)
         network_mode: host
         volumes:
-            - prometheus-volume:/app/data/
+            - ./prometheus-volume:/app/data/
     grafana:
         image: grafana/grafana-arm32v7-linux:5.4.3
         depends_on:
@@ -30,4 +27,4 @@ services:
             - GF_AUTH_ANONYMOUS_ENABLED=true
         volumes:
             - ./grafana/provisioning/:/etc/grafana/provisioning/:ro
-            - grafana-volume:/var/lib/grafana
+            - ./grafana-volume:/var/lib/grafana
